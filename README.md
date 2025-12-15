@@ -10,7 +10,7 @@ A modern, interactive portfolio website built with Next.js 14, featuring 3D anim
 - **Interactive Projects**: Filterable and searchable project showcase
 - **Skills Visualization**: Animated progress bars and circular indicators
 - **Dark/Light Mode**: Theme toggle with localStorage persistence
-- **Contact Form**: EmailJS integration for direct messaging
+- **Contact Section**: Direct contact links (email, LinkedIn, GitHub)
 - **Fully Responsive**: Mobile-first design with Tailwind CSS
 - **Modern UI**: Glassmorphism effects and gradient accents
 
@@ -23,7 +23,6 @@ A modern, interactive portfolio website built with Next.js 14, featuring 3D anim
 - **3D Graphics**: Three.js + React Three Fiber + Drei
 - **Particles**: tsParticles
 - **Icons**: React Icons
-- **Contact**: EmailJS
 - **Deployment**: Vercel
 
 ## 📦 Installation
@@ -39,34 +38,14 @@ cd Portfolio
 npm install
 ```
 
-3. Create a `.env.local` file in the root directory:
-```env
-# EmailJS Configuration (Required for contact form)
-NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_service_id
-NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_template_id
-NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
-```
+3. Add your resume PDF to the `public` folder as `resume.pdf`
 
-4. Add your resume PDF to the `public` folder as `resume.pdf`
-
-5. Run the development server:
+4. Run the development server:
 ```bash
 npm run dev
 ```
 
-6. Open [http://localhost:3000](http://localhost:3000) in your browser
-
-## 📧 Setting Up EmailJS
-
-1. Go to [EmailJS](https://www.emailjs.com/) and create an account
-2. Create an email service (Gmail, Outlook, etc.)
-3. Create an email template with the following variables:
-   - `{{from_name}}`
-   - `{{from_email}}`
-   - `{{subject}}`
-   - `{{message}}`
-   - `{{to_email}}`
-4. Copy your Service ID, Template ID, and Public Key to `.env.local`
+5. Open [http://localhost:3000](http://localhost:3000) in your browser
 
 ## 🎨 Customization
 
@@ -143,8 +122,7 @@ portfolio/
 1. Push your code to GitHub
 2. Go to [Vercel](https://vercel.com)
 3. Import your repository
-4. Add environment variables (EmailJS credentials)
-5. Deploy!
+4. Deploy! (No environment variables needed)
 
 ### Build for Production
 
