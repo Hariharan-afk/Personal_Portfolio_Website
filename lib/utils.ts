@@ -18,8 +18,9 @@ export function scrollToSection(id: string) {
 }
 
 export function downloadResume() {
+  // Use the API route for consistent download behavior
   const link = document.createElement("a");
-  link.href = "/resume.pdf";
+  link.href = "/api/resume";
   link.download = "Hariharan_Chandrasekar_resume.pdf";
   document.body.appendChild(link);
   link.click();
