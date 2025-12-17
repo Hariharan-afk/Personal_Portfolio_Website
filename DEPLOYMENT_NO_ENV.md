@@ -148,3 +148,4 @@ No environment variables, no complex setup, just pure portfolio goodness.
 
 Built with Next.js 14, React 18, TypeScript, Tailwind CSS, Three.js, and Framer Motion.
 
+

@@ -22,6 +22,49 @@
     @apply bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent;
   }
 
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px) translateX(0px);
+      opacity: 0.3;
+    }
+    25% {
+      transform: translateY(-20px) translateX(10px);
+      opacity: 0.6;
+    }
+    50% {
+      transform: translateY(-40px) translateX(-10px);
+      opacity: 0.9;
+    }
+    75% {
+      transform: translateY(-20px) translateX(10px);
+      opacity: 0.6;
+    }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes draw {
+    0% {
+      stroke-dasharray: 1000;
+      stroke-dashoffset: 1000;
+      opacity: 0;
+    }
+    50% {
+      opacity: 0.5;
+    }
+    100% {
+      stroke-dasharray: 1000;
+      stroke-dashoffset: 0;
+      opacity: 0.3;
+    }
+  }
+
+  .animate-draw {
+    animation: draw 8s ease-in-out infinite;
+  }
+
   .glow-primary {
     box-shadow: 0 0 20px rgba(0, 217, 255, 0.3),
                 0 0 40px rgba(0, 217, 255, 0.2),
@@ -68,19 +111,41 @@
 }
 
 /* Light mode overrides */
-.light {
-  --background: #ffffff;
-  --background-surface: #f3f4f6;
-  --border: #e5e7eb;
-  --text: #1f2937;
-  --text-muted: #6b7280;
+html:not(.dark) {
+  --color-background: 255, 255, 255;
+  --color-background-surface: 243, 244, 246;
+  --color-border: 229, 231, 235;
+  --color-text: 31, 41, 55;
+  --color-text-muted: 107, 114, 128;
 }
 
-.light body {
-  @apply bg-white text-gray-900;
+html:not(.dark) body {
+  background-color: white;
+  color: #1f2937;
 }
 
-.light .card-glass {
-  @apply bg-gray-50/80;
+html:not(.dark) .bg-background {
+  background-color: white !important;
+}
+
+html:not(.dark) .bg-background-surface {
+  background-color: #f3f4f6 !important;
+}
+
+html:not(.dark) .text-text {
+  color: #1f2937 !important;
+}
+
+html:not(.dark) .text-text-muted {
+  color: #6b7280 !important;
+}
+
+html:not(.dark) .border-border {
+  border-color: #e5e7eb !important;
+}
+
+html:not(.dark) .card-glass {
+  background-color: rgba(243, 244, 246, 0.8) !important;
+  backdrop-filter: blur(12px);
 }
 

@@ -2,21 +2,11 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import dynamic from "next/dynamic";
 import { FiDownload, FiArrowDown } from "react-icons/fi";
 import Button from "@/components/ui/Button";
+import AnimatedBackground from "@/components/ui/AnimatedBackground";
 import { personalInfo } from "@/lib/data";
 import { downloadResume, scrollToSection } from "@/lib/utils";
-
-// Dynamically import Three.js components (client-side only)
-const Scene3D = dynamic(() => import("@/components/three/Scene3D"), {
-  ssr: false,
-  loading: () => <div className="w-full h-full bg-background-surface/20" />,
-});
-
-const ParticleField = dynamic(() => import("@/components/three/ParticleField"), {
-  ssr: false,
-});
 
 export default function Hero() {
   const [text, setText] = useState("");
@@ -59,15 +49,8 @@ export default function Hero() {
 
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Particle Background */}
-      <div className="absolute inset-0 z-0">
-        <ParticleField />
-      </div>
-
-      {/* 3D Scene */}
-      <div className="absolute right-0 top-0 w-1/2 h-full z-0 hidden lg:block opacity-50">
-        <Scene3D />
-      </div>
+      {/* Lightweight Animated Background */}
+      <AnimatedBackground />
 
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center lg:text-left">
@@ -158,9 +141,12 @@ export default function Hero() {
             </motion.div>
           </motion.div>
 
-          {/* Mobile 3D Scene */}
-          <div className="lg:hidden h-64 w-full relative opacity-50">
-            <Scene3D />
+          {/* Mobile 3D Scene - Removed for performance */}
+          <div className="lg:hidden h-64 w-full relative flex items-center justify-center bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10 rounded-xl">
+            <div className="text-center">
+              <div className="text-6xl mb-4">🚀</div>
+              <p className="text-text-muted">AI • ML • Innovation</p>
+            </div>
           </div>
         </div>
       </div>

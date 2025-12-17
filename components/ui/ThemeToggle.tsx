@@ -4,41 +4,53 @@ import { useEffect, useState } from "react";
 import { FiSun, FiMoon } from "react-icons/fi";
 
 export default function ThemeToggle() {
+  const [mounted, setMounted] = useState(false);
   const [isDark, setIsDark] = useState(true);
 
+  // Prevent hydration mismatch
   useEffect(() => {
-    // Check localStorage for theme preference
-    const savedTheme = localStorage.getItem("theme");
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    setMounted(true);
     
-    const useDark = savedTheme ? savedTheme === "dark" : prefersDark;
-    setIsDark(useDark);
-    
-    if (useDark) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
+    // Check current theme
+    const isDarkMode = document.documentElement.classList.contains("dark");
+    setIsDark(isDarkMode);
   }, []);
 
   const toggleTheme = () => {
-    const newTheme = !isDark;
-    setIsDark(newTheme);
+    const html = document.documentElement;
+    const newIsDark = !isDark;
     
-    if (newTheme) {
-      document.documentElement.classList.add("dark");
+    console.log("Toggling theme. Current:", isDark, "New:", newIsDark);
+    
+    if (newIsDark) {
+      html.classList.add("dark");
       localStorage.setItem("theme", "dark");
     } else {
-      document.documentElement.classList.remove("dark");
+      html.classList.remove("dark");
       localStorage.setItem("theme", "light");
     }
+    
+    setIsDark(newIsDark);
+    
+    // Force a check
+    console.log("HTML classes:", html.classList.toString());
   };
+
+  // Don't render until mounted to prevent hydration issues
+  if (!mounted) {
+    return (
+      <div className="p-2 w-9 h-9 rounded-lg bg-background-surface border border-border">
+        <div className="w-5 h-5" />
+      </div>
+    );
+  }
 
   return (
     <button
       onClick={toggleTheme}
       className="p-2 rounded-lg bg-background-surface border border-border hover:border-primary transition-all duration-300"
       aria-label="Toggle theme"
+      title={isDark ? "Switch to light mode" : "Switch to dark mode"}
     >
       {isDark ? (
         <FiSun className="w-5 h-5 text-primary" />

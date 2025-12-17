@@ -97,27 +97,30 @@ export default function Projects() {
                   hover={true}
                   className="h-full flex flex-col relative overflow-hidden group"
                 >
-                  {/* Featured Badge */}
-                  {project.featured && (
-                    <div className="absolute top-4 right-4 z-10">
-                      <div className="flex items-center px-3 py-1 bg-accent/90 text-white rounded-full text-sm font-medium">
-                        <FiStar className="mr-1" size={14} />
-                        Featured
-                      </div>
-                    </div>
-                  )}
-
                   {/* Gradient Overlay on Hover */}
                   <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
 
                   <div className="relative z-10 flex flex-col h-full">
-                    {/* Header */}
-                    <div className="mb-4">
-                      <div className="flex items-start justify-between mb-3">
-                        <h3 className="text-xl font-bold pr-4">
+                    {/* Header with Featured Badge Space */}
+                    <div className="mb-4 relative">
+                      {/* Featured Badge */}
+                      {project.featured && (
+                        <div className="absolute -top-2 -right-2 z-10">
+                          <div className="flex items-center px-3 py-1 bg-accent text-white rounded-full text-xs font-medium shadow-lg">
+                            <FiStar className="mr-1" size={12} />
+                            Featured
+                          </div>
+                        </div>
+                      )}
+                      
+                      {/* Title with proper spacing */}
+                      <div className="mb-3 pr-24">
+                        <h3 className="text-xl font-bold leading-snug">
                           {project.title}
                         </h3>
                       </div>
+                      
+                      {/* Category Badge */}
                       <span className="inline-block px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium">
                         {project.category}
                       </span>
