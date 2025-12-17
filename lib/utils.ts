@@ -20,7 +20,7 @@ export function scrollToSection(id: string) {
 export function downloadResume() {
   const link = document.createElement("a");
   link.href = "/resume.pdf";
-  link.download = "Hariharan_Chandrasekar_Resume.pdf";
+  link.download = "Hariharan_Chandrasekar_resume.pdf";
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
